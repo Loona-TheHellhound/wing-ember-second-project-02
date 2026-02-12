@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctr2novdfvpm4"]
+
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_inftv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_inftv"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_jltlb"]
+sky_material = SubResource("ProceduralSkyMaterial_inftv")
+
+[sub_resource type="Environment" id="Environment_jkk2y"]
+background_mode = 2
+sky = SubResource("Sky_jltlb")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level01" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jkk2y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="ProtoController" parent="." instance=ExtResource("1_inftv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4096546, 2.4159722, -18.43083)
+can_sprint = true
+can_freefly = true
+input_left = "move_left"
+input_right = "move_right"
+input_forward = "move_forward"
+input_back = "move_backwards"
+input_jump = "move_jump"
+input_sprint = "move_sprint"
+input_freefly = "move_freefly"
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="Floor" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(13.074395, 0, 0, 0, 1, 0, 0, 0, 30.536755, 23.582872, -0.38012695, -20.591434)
+size = Vector3(6.5083313, 0.2397461, 2.3486328)
+
+[node name="Roof" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(13.074395, 0, 0, 0, 1, 0, 0, 0, 30.536755, -1.8490925, 14.844065, -40.395184)
+size = Vector3(2.803482, 0.90686035, 1.0499268)
+
+[node name="Wall-1" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 30.228514, 65.69943, 15.119629, -20.804243)
+size = Vector3(1, 31.239258, 2.3764648)
+
+[node name="Wall-2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.46180844, 0, 0, 0, 1, 0, 0, 0, 19.137419, -19.071548, 15.195984, -20.57471)
+size = Vector3(1, 31.391968, 3.734436)
+
+[node name="Wall-3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.32486, 15.08477, -56.300495)
+size = Vector3(85.35004, 31.16954, 1.3424189)
+
+[node name="Wall-4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.32486, 15.08477, 14.554176)
+size = Vector3(85.35004, 31.16954, 1.3424189)
+
+[node name="Building-Wall-1" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.165565, 7.1314087, -24.683311)
+size = Vector3(67.97751, 15.262817, 1)
+
+[node name="Building-Wall-2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.630859, 7.102133, -32.33004)
+size = Vector3(1.6621094, 15.262817, 16.293457)
+
+[node name="Building-Wall-3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.914404, 7.1314087, -24.683311)
+size = Vector3(17.29187, 15.262817, 1)
+
+[node name="Building-Wall-4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.006440194, 0, -0.99997926, 0, 1, 0, 0.99997926, 0, 0.006440194, 15.572109, 7.1314087, -51.900375)
+size = Vector3(17.29187, 15.262817, 1.9052734)
+
+[node name="Ramp" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.8822748, -0.47073472, 0, 0.47073472, 0.8822748, -13.949986, 6.441149, -8.968239)
+size = Vector3(10.105347, 1, 35.993774)
